@@ -2,7 +2,7 @@ import java.util.*;
 
 public class INode {
 
-    public Date aTime; // last access (update in print??)
+    public Date aTime; // last access
     public Date cTime; // time created
     public Date mTime; // time modified (update in add block & remove block)
 
@@ -31,6 +31,7 @@ public class INode {
 
         // can insert
         directBlocks[blockCount] = newBlockIndex;
+        mTime = new Date();
         return true;
     }
 
@@ -40,6 +41,7 @@ public class INode {
         }
 
         blockCount--;
+        mTime = new Date();
         return directBlocks[blockCount];
     }
 }
