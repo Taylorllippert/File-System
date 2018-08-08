@@ -26,3 +26,15 @@ public class FileSystem {
     }
     
 }
+ public void addblock(String fileName int blockNum) {
+        INode n = filetoINode.get(fileName); // iNode target
+
+        for (int i = 0; i < dataBlocks.length; i++) {
+            if (dataBlocks[i] == false) { // insert to iNode
+                n.insertBlock(i);
+                blockNum--;
+            }
+            if (blockNum == 0) {
+                break;
+            }
+        }
