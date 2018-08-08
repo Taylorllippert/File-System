@@ -11,6 +11,13 @@ public class FileSystem {
         usedStatus = new boolean[100]; // false if unused. true if used
     }
     
+    //Creates a new file and uses addBlocks to add the necessary blocks
+    public void newFile(String name, int bnum){
+    	INode node = new INode();
+    	filetoINode.put(name, node);
+    	addBlocks(name, bnum);
+    }
+    
     //called for function DB
     public void deleteBlocks(String name, int bnum){
         INode fnode = filetoINode.get(name);
