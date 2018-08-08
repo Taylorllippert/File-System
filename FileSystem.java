@@ -25,8 +25,7 @@ public class FileSystem {
             dataBlocks[fnode.remove()] = false;
     }
     
-}
- public void addblock(String fileName int blockNum) {
+    public void addblock(String fileName int blockNum) {
         INode n = filetoINode.get(fileName); // iNode target
 
         for (int i = 0; i < dataBlocks.length; i++) {
@@ -38,3 +37,6 @@ public class FileSystem {
                 break;
             }
         }
+    }  
+}
+
