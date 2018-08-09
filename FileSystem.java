@@ -38,5 +38,13 @@ public class FileSystem {
             }
         }
     }  
+	
+	public void deleteFile(String filename) {
+        INode n = filetoINode.get(fileName);
+        for (int i =0;i<n.blockCount; i++) {
+            deleteBlocks(name, i);
+        }
+    //to do: delete INode from hashmap
+    }
 }
 
