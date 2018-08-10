@@ -7,7 +7,7 @@ public class FileSystem {
     //Creates File System Object
     //Needs to initialize dataBlocks to false
     public FileSystem (){
-        filetoINOde = new HashMap<>(); // key: filename, value: iNode
+        filetoINode = new HashMap<>(); // key: filename, value: iNode
         dataBlocks = new boolean[100]; // false if unused. true if used
     }
     
@@ -22,10 +22,10 @@ public class FileSystem {
     public void deleteBlocks(String name, int bnum){
         INode fnode = filetoINode.get(name);
         for(int i = 0; i < bnum; i++)
-            dataBlocks[fnode.remove()] = false;
+            dataBlocks[fnode.removeBlock()] = false;
     }
     
-    public void addblock(String fileName int blockNum) {
+    public void addBlocks(String fileName, int blockNum) {
         INode n = filetoINode.get(fileName); // iNode target
 
         for (int i = 0; i < dataBlocks.length; i++) {
@@ -40,11 +40,18 @@ public class FileSystem {
     }  
 	
 	public void deleteFile(String filename) {
-        INode n = filetoINode.get(fileName);
+        INode n = filetoINode.get(filename);
         for (int i =0;i<n.blockCount; i++) {
-            deleteBlocks(name, i);
+            deleteBlocks(filename, i);
         }
     //to do: delete INode from hashmap
+    }
+
+    
+    //TO DO
+    public String toString(){
+
+        return "";
     }
 }
 

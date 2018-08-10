@@ -44,4 +44,9 @@ public class INode {
         mTime = new Date();
         return directBlocks[blockCount];
     }
+    //TO DO
+    public String toString(){
+
+        return "";
+    }
 }
