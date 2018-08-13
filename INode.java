@@ -32,6 +32,7 @@ public class INode {
         // can insert
         directBlocks[blockCount] = newBlockIndex;
         mTime = new Date();
+        blockCount++;
         return true;
     }
 
