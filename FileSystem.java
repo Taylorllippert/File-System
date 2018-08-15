@@ -60,12 +60,22 @@ public class FileSystem {
         deleteBlocks(fileName, n.blockCount);
         filetoINode.remove(fileName);   //delete iNode from hashmap
     }
-
+    private int usedSpace(){
+	int i = 0;
+	for (int j = 0; j < MAX_DISK_BLOCKS; j++)
+	    if(dataBlocks[j] == false)
+		i++;
+	return BLOCK_SIZE*i;
+    }
     
     //TO DO
     public String toString(){
-
-        return "";
+	String display = "Used Space: " + usedSpace()+"\n";
+	for (String name: filetoINode.keySet()){
+		INode val = filetoINode.get(name);
+		display += val + " " +name + "\n";
+	}
+        return display;
     }
 }
 
