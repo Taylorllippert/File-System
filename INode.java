@@ -10,14 +10,14 @@ public class INode {
     public int[] directBlocks; // set size as 12. keeps track of the blocks used for this iNode
     public int fileSize;    //fileSize based on block size(in bytes)
     public int blockSize;
-    public int fMode;
+    public String fMode;
     public String fUid;
     public String fGid;
 
     final int INVALID_BLOCK_NUMBER = -1;    // default block number
     final int HARDCODED_BLOCKMAX = 12;  //ASSUMPTION: a File may not exceed 12 blocks
 
-    public INode (int mode, String uid, String gid, int bSize) {
+    public INode (String mode, String uid, String gid, int bSize) {
         directBlocks = new int[HARDCODED_BLOCKMAX];
         aTime = new Date();
         cTime = new Date();
