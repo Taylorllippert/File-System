@@ -66,9 +66,10 @@ public class INode {
     private void updateFileSize(){
         fileSize = blockCount*blockSize;
     }
-    //TO DO
-    public String toString(){
 
-        return "";
+    public String toString(){
+        String display = fMode + " " + fUid + " " + fGid + " ";
+        display += fileSize + " " + mTime;
+        return display;
     }
 }
