@@ -2,18 +2,25 @@ import java.util.*;
 
 public class FileSystem {
     HashMap<String, INode> filetoINode;
-    boolean[] dataBlocks;
-    
+    boolean[] dataBlocks;   // disk map
+
+    final int MAX_DISK_BLOCKS = 1000;
+
+    final int DEFAULT_MODE = 0x744; // maps to -rwxr--r--
+    final int BLOCK_SIZE = 0x80000; // equivalent of 512K in bytes
+    final String DEFAULT_UID = "CSS430";
+    final String DEFAULT_GID = "CSS430";
+
     //Creates File System Object
     //Needs to initialize dataBlocks to false
     public FileSystem (){
         filetoINode = new HashMap<>(); // key: filename, value: iNode
-        dataBlocks = new boolean[100]; // false if unused. true if used
+        dataBlocks = new boolean[MAX_DISK_BLOCKS]; // false if unused. true if used
     }
     
     //Creates a new file and uses addBlocks to add the necessary blocks
     public void newFile(String name, int bnum){
-    	INode node = new INode();
+        INode node = new INode(DEFAULT_MODE, DEFAULT_UID, DEFAULT_GID, BLOCK_SIZE);
     	filetoINode.put(name, node);
     	addBlocks(name, bnum);
     }
