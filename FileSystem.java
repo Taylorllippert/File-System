@@ -47,6 +47,7 @@ public class FileSystem {
             if (dataBlocks[i] == false) { // insert to iNode if block is not used
                 n.insertBlock(i);
                 blockNum--;
+                dataBlocks[i] = true;
             }
             if (blockNum == 0) { // the amount of blocks to be added has been reached
                 break;
@@ -63,19 +64,20 @@ public class FileSystem {
     private int usedSpace(){
 	int i = 0;
 	for (int j = 0; j < MAX_DISK_BLOCKS; j++)
-	    if(dataBlocks[j] == false)
+	    if(dataBlocks[j])
 		i++;
 	return BLOCK_SIZE*i;
     }
     
     //TO DO
     public String toString(){
-	String display = "Used Space: " + usedSpace();
-	for (String name: filetoINode.keySet()){
-		INode val = filetoINode.get(name);
-		display += "\n" +val + " " +name ;
-	}
-        return display;
-    }
+        String display = "Used Space: " + usedSpace();
+        for (String name: filetoINode.keySet()){
+            INode val = filetoINode.get(name);
+            display += "\n" +val + " " +name ;
+        }
+            return display;
+}
+
 }
 
