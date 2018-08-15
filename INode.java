@@ -9,15 +9,17 @@ public class INode {
     public int blockCount; // amount of blocks used
     public int[] directBlocks; // set size as 12. keeps track of the blocks used for this iNode
 
+    final int INVALID_BLOCK_NUMBER = -1;    // default block number
+
     public INode () {
         directBlocks = new int[12];
-        aTime = new Date();
         cTime = new Date();
-        mTime = new Date();
+        mTime = cTime;
+		aTime = mTime;
 
         blockCount = 0;
         for (int i = 0; i < directBlocks.length; i++) {
-            directBlocks[i] = -1;
+            directBlocks[i] = INVALID_BLOCK_NUMBER;
         }
     }
 
@@ -36,14 +38,17 @@ public class INode {
         return true;
     }
 
-    public int removeBlock() { // -1 if empty
+    // @returns -1 if empty or index of removed block
+    public int removeBlock() {
         if (blockCount == 0) {
-            return -1;
+            return INVALID_BLOCK_NUMBER;
         }
 
         blockCount--;
+        int tmp = directBlocks[blockCount];
+        directBlocks[blockCount] = INVALID_BLOCK_NUMBER;
         mTime = new Date();
-        return directBlocks[blockCount];
+        return tmp;
     }
     //TO DO
     public String toString(){

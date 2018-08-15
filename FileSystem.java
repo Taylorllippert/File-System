@@ -22,8 +22,13 @@ public class FileSystem {
     // remove a certain number of blocks in the INode of a certain file
     public void deleteBlocks(String name, int bnum){
         INode fnode = filetoINode.get(name);
-        for(int i = 0; i < bnum; i++)
+        for(int i = 0; i < bnum; i++) {
+            if(fnode.blockCount == 0){
+                System.out.println("DB (deleteBlock) command failed; no blocks to delete");
+                return;
+            }
             dataBlocks[fnode.removeBlock()] = false;
+        }
     }
     
     // add a certain number of blocks into the INode of a certain file
@@ -41,13 +46,12 @@ public class FileSystem {
             }
         }
     }  
-	
-    public void deleteFile(String filename) {
-        INode n = filetoINode.get(filename);
-        for (int i =0;i<n.blockCount; i++) {
-            deleteBlocks(filename, i);
-        }
-    //to do: delete INode from hashmap
+
+    //deletes a file from disk
+    public void deleteFile(String fileName) {
+        INode n = filetoINode.get(fileName);
+        deleteBlocks(fileName, n.blockCount);
+        filetoINode.remove(fileName);   //delete iNode from hashmap
     }
 
     
