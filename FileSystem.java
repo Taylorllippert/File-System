@@ -7,7 +7,7 @@ public class FileSystem {
     final int MAX_DISK_BLOCKS = 1000;
 
     final String DEFAULT_MODE = "f-rwxr--r--";
-    final int BLOCK_SIZE = 0x80000; // equivalent of 512K in bytes
+    final int BLOCK_SIZE = 512; // 512K in bytes
     final String DEFAULT_UID = "CSS430";
     final String DEFAULT_GID = "CSS430";
 
