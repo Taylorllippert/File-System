@@ -70,10 +70,10 @@ public class FileSystem {
     
     //TO DO
     public String toString(){
-	String display = "Used Space: " + usedSpace()+"\n";
+	String display = "Used Space: " + usedSpace();
 	for (String name: filetoINode.keySet()){
 		INode val = filetoINode.get(name);
-		display += val + " " +name + "\n";
+		display += "\n" +val + " " +name ;
 	}
         return display;
     }
